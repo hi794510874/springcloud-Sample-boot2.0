@@ -1,0 +1,26 @@
+ server:
+   port: 9761
+
+
+ eureka:
+   instance:
+     hostname: localhost
+     prefer-ip-address: true
+ #    environment: debug
+ #    设置超过多久没有renews请求则认为是失效 默认90s
+ #    lease-expiration-duration-in-seconds: 90
+   client:
+     registerWithEureka: false
+     fetchRegistry: false
+     serviceUrl:
+       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+   server:
+ #  Eureka Serve接收到的续约低于为该值配置的百分比（默认为15分钟内低于85％），则服务器开启自我保护模式，即不再剔除注册列表的信息
+ #    renewal-percent-threshold: 0.85
+ #    设置定期剔除是否有服务超过lease-expiration-duration-in-seconds没有renew请求 默认60s
+ #    eviction-interval-timer-in-ms: 60
+ management:
+   security:
+ #  设为false后/health能拿到更多信息
+     enabled: false
+

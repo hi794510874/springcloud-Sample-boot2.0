@@ -19,7 +19,7 @@
 	</parent>
 
 	<properties>
-		<spring-cloud.version>Finchley.RC1</spring-cloud.version>
+		<spring-cloud.version>Finchley.RC2</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -33,7 +33,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+    </dependencies>
 
 	<dependencyManagement>
 		<dependencies>

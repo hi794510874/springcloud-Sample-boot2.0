@@ -1,13 +1,15 @@
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9761/eureka/
   instance:
     prefer-ip-address: true
-#    ip-address: ${spring.cloud.client.ipAddress}
-    appname: service-provider #swaggerui 集成时会遇到的问题    写appname后不会有 还没测试 待验证
-#    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-#   定期通知eureka server还活着 rennew  默认30s
-#    lease-renewal-interval-in-seconds: 30
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
 server:
   port: 9763
+
+spring:
+  application:
+    name: service-provider

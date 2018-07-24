@@ -1,5 +1,6 @@
 package com.bob.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -10,9 +11,12 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class BasicController {
+    @Value("${PackageFH.AsyncQueue.CacheCtripHotelRequestQos}")
+    private String CacheCtripHotelRequestQos;
+
     @GetMapping("/hello_world")
     public Mono<String> sayHelloWorld() {
 
-        return Mono.just("Hello World");
+        return Mono.just(CacheCtripHotelRequestQos);
     }
 }

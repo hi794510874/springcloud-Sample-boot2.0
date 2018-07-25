@@ -1,4 +1,4 @@
-package com.bob.dynamicchangeloglevel;
+package com.bob.dynamicchangeconfig;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;

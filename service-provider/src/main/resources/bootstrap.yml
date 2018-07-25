@@ -13,6 +13,12 @@ server:
 spring:
   application:
     name: service-provider
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    password: ctripwingonuat
+    username: sa
+#    url: jdbc:sqlserver://172.18.21.31;DatabaseName=PackageOrderDB
+
 
 
 apollo.bootstrap.enabled: true

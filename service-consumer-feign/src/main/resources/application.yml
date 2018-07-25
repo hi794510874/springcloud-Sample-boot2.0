@@ -15,4 +15,4 @@ spring:
     name: service-consumer-feign
 
 apollo.bootstrap.enabled: true
-apollo.bootstrap.namespaces: application,pbssetting
+apollo.bootstrap.namespaces: pbssetting,application

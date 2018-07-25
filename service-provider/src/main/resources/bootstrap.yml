@@ -13,3 +13,7 @@ server:
 spring:
   application:
     name: service-provider
+
+
+apollo.bootstrap.enabled: true
+apollo.bootstrap.namespaces: application,pbssetting

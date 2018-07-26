@@ -5,8 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.SQLException;
 
 
 /**
@@ -24,7 +27,7 @@ public class BasicController {
     private String logLevel;
 
     @Autowired
-    private HikariDataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
 
     @GetMapping("/hello_world")
     public String sayHelloWorld() {
@@ -32,6 +35,12 @@ public class BasicController {
         logger.debug("debug");
         logger.warn("warn");
         logger.error("error");
-        return CacheCtripHotelRequestQos + "   " + logLevel +"  "+dataSource.getJdbcUrl();
+        String jdbcurl = "";
+        try {
+            jdbcurl = jdbcTemplate.getDataSource().getConnection().getMetaData().getURL();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return CacheCtripHotelRequestQos + "   " + logLevel + "  " + jdbcurl;
     }
 }

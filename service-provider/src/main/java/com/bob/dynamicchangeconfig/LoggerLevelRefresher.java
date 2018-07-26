@@ -6,6 +6,7 @@ import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfigChangeListener;
 import org.springframework.beans.BeansException;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
+import org.springframework.cloud.context.scope.refresh.RefreshScope;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import javax.annotation.PostConstruct;
 import java.util.Set;
 
 @Service
-public class LoggerLevelRefresher implements ApplicationContextAware {
+public class LoggerLevelRefresher extends RefreshScope implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     @ApolloConfig
@@ -36,6 +37,11 @@ public class LoggerLevelRefresher implements ApplicationContextAware {
             if (changedKey.startsWith("logging.level.")) {
                 loggingLevelChanged = true;
                 break;
+            }
+
+            if (changedKey.startsWith("spring.datasource.")) {
+                this.applicationContext.publishEvent(new EnvironmentChangeEvent(changedKeys));
+                refreshAll();//利用springcloud 自带的热更新  集合@RefreshScope  标签完成datasource的切换
             }
         }
 

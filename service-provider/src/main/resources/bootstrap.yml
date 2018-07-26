@@ -15,7 +15,7 @@ spring:
     name: service-provider
   datasource:
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    password: ctripwingonuat
+    password: ctrip.hp580dbsz.test
     username: sa
 #    url: jdbc:sqlserver://172.18.21.31;DatabaseName=PackageOrderDB
 
